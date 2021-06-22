@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Hargos Reports", "Hargos Reports\Hargos Reports.rptproj", "{ECA06CB1-335A-4956-B89A-E5A06EABCC40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Production|Default = Production|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Debug|Default.ActiveCfg = Debug
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Debug|Default.Build.0 = DebugLocal
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Debug|Default.Deploy.0 = DebugLocal
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.DebugLocal|Default.Build.0 = DebugLocal
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Production|Default.ActiveCfg = Production
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Production|Default.Build.0 = Production
+		{ECA06CB1-335A-4956-B89A-E5A06EABCC40}.Production|Default.Deploy.0 = Production
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

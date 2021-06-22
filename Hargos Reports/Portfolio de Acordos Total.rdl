@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Neo">
+      <DataSourceReference>Neo</DataSourceReference>
+      <rd:DataSourceID>271ccceb-996b-42b6-8d9b-c7b3b567af42</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>2.5cm</RightMargin>
+  <PageWidth>21cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="DAT_ACORDO_INICIAL">
+      <DataType>DateTime</DataType>
+      <Prompt>Data Acordo Inicial</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DAT_ACORDO_FINAL">
+      <DataType>DateTime</DataType>
+      <Prompt>Data Acordo Final</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CONTRATANTE">
+      <DataType>Integer</DataType>
+      <Prompt>CONTRATANTE</Prompt>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <Left>11.25cm</Left>
+        <ZIndex>3</ZIndex>
+        <Width>1.32275cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Height>1.32275cm</Height>
+        <Value>h_msn_small</Value>
+      </Image>
+      <Chart Name="chart1">
+        <Legend>
+          <Visible>true</Visible>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+            <FontFamily>Tahoma</FontFamily>
+            <FontSize>7pt</FontSize>
+          </Style>
+          <Position>RightCenter</Position>
+        </Legend>
+        <Subtype>Plain</Subtype>
+        <Title>
+          <Caption>Valor Acordos x Recuperador</Caption>
+          <Style>
+            <FontFamily>Tahoma</FontFamily>
+            <FontSize>9pt</FontSize>
+          </Style>
+        </Title>
+        <Height>6.75cm</Height>
+        <CategoryAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Visible>true</Visible>
+          </Axis>
+        </CategoryAxis>
+        <PointWidth>0</PointWidth>
+        <ThreeDProperties>
+          <Enabled>true</Enabled>
+          <Rotation>30</Rotation>
+          <Inclination>30</Inclination>
+          <Shading>Simple</Shading>
+          <WallThickness>50</WallThickness>
+          <DrawingStyle>Cylinder</DrawingStyle>
+        </ThreeDProperties>
+        <DataSetName>Neo</DataSetName>
+        <SeriesGroupings>
+          <SeriesGrouping>
+            <DynamicSeries>
+              <Grouping Name="chart1_SeriesGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Contratante.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!Contratante.Value</Label>
+            </DynamicSeries>
+          </SeriesGrouping>
+        </SeriesGroupings>
+        <Top>1.5cm</Top>
+        <PlotArea>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+            <BackgroundColor>LightGrey</BackgroundColor>
+          </Style>
+        </PlotArea>
+        <ValueAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <ShowGridLines>true</ShowGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+            <Scalar>true</Scalar>
+          </Axis>
+        </ValueAxis>
+        <ZIndex>2</ZIndex>
+        <Type>Column</Type>
+        <Width>12.25cm</Width>
+        <Palette>Default</Palette>
+        <ChartData>
+          <ChartSeries>
+            <DataPoints>
+              <DataPoint>
+                <DataValues>
+                  <DataValue>
+                    <Value>=Sum(Fields!Valor_Acordos.Value)</Value>
+                  </DataValue>
+                </DataValues>
+                <DataLabel />
+                <Marker />
+              </DataPoint>
+            </DataPoints>
+          </ChartSeries>
+        </ChartData>
+        <Style>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </Chart>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Width>10.75cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontFamily>Tahoma</FontFamily>
+          <FontWeight>700</FontWeight>
+          <FontSize>16pt</FontSize>
+          <Color>SteelBlue</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.91429cm</Height>
+        <Value>Acordos por Contratante</Value>
+      </Textbox>
+      <Table Name="table1">
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7.5pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Totais</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7.5pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="R$ " &amp; FormatNumber(Sum(Fields!Valor_Acordos.Value),2,true)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7.5pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!Qtde_Acordos.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox16">
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7.5pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="R$ " &amp; FormatNumber(Sum(Fields!Valor_Promessas.Value),2,true)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7.5pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!Qtde_Promessas.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.5cm</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <DataSetName>Neo</DataSetName>
+        <Top>8.25cm</Top>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Recuperador">
+                      <rd:DefaultName>Recuperador</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>7.5pt</FontSize>
+                        <Direction>RTL</Direction>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Contratante.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Valor_Acordo">
+                      <rd:DefaultName>Valor_Acordo</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>7.5pt</FontSize>
+                        <Direction>RTL</Direction>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="R$ " &amp; FormatNumber(Sum(Fields!Valor_Acordos.Value),2,true)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Qtde">
+                      <rd:DefaultName>Qtde</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>7.5pt</FontSize>
+                        <Direction>RTL</Direction>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!Qtde_Acordos.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox15">
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>7.5pt</FontSize>
+                        <Direction>RTL</Direction>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="R$ " &amp; FormatNumber(Sum(Fields!Valor_Promessas.Value),2,true)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>7.5pt</FontSize>
+                        <Direction>RTL</Direction>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!Qtde_Promessas.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.53333cm</Height>
+            </TableRow>
+          </TableRows>
+          <Grouping Name="table1_Details_Group">
+            <GroupExpressions>
+              <GroupExpression>=Fields!Contratante.Value</GroupExpression>
+            </GroupExpressions>
+          </Grouping>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>800</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <Color>White</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Contratante</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>800</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <Color>White</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Valor Acordo</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <ZIndex>12</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>800</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <Color>White</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Qtde</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>800</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <Color>White</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Valor Promessa</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>800</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <Color>White</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Qtde</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.55873cm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>7cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.53968cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.02645cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.53968cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.02645cm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>9.84206cm</Height>
+  </Body>
+  <rd:ReportID>80262583-dfe7-4ba5-80ea-2a38ec16f2dd</rd:ReportID>
+  <LeftMargin>2.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="h_msn_small">
+      <ImageData>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</ImageData>
+      <MIMEType>image/jpeg</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="Neo">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>Select
+	G.CONT_Fantasia as Contratante,
+	(
+	Select TOP 1 Count(1) From 
+		Acordos X (NOLOCK)
+	JOIN 
+		Contratos U (NOLOCK)
+	ON 
+		U.CTRA_ID = X.CTRA_ID
+	JOIN 
+		Funcionarios V (NOLOCK) 
+	ON 
+		V.FUNC_ID = U.FUNC_ID
+	JOIN 
+		Carteiras W (NOLOCK) 
+	ON 
+		W.CART_ID = U.CART_ID
+	JOIN
+		Status_do_Contrato K (NOLOCK)
+	ON
+		K.SCON_ID = U.SCON_ID
+	Where W.CART_ID = D.CART_ID
+	AND K.SCON_ID = 2
+	AND V.FUNC_ID = C.FUNC_ID
+	AND X.ACOR_Ativo = 1
+	AND Not Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Not Null)
+	) as Qtde_Promessas,
+	(
+	Select TOP 1 Sum(Y.PARC_ValorTotal) From 
+		Acordos X (NOLOCK) JOIN Parcelas Y On Y.ACOR_ID = X.ACOR_ID 
+	JOIN 
+		Contratos U (NOLOCK)
+	ON 
+		U.CTRA_ID = X.CTRA_ID
+	JOIN 
+		Funcionarios V (NOLOCK) 
+	ON 
+		V.FUNC_ID = U.FUNC_ID
+	JOIN 
+		Carteiras W (NOLOCK) 
+	ON 
+		W.CART_ID = U.CART_ID
+	JOIN
+		Status_do_Contrato K (NOLOCK)
+	ON
+		K.SCON_ID = U.SCON_ID
+	Where W.CART_ID = D.CART_ID
+                AND Y.PARC_Numero = 1
+	AND K.SCON_ID = 2
+	AND V.FUNC_ID = C.FUNC_ID
+	AND X.ACOR_Ativo = 1
+	AND Not Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Not Null)
+	) as Valor_Promessas,
+	(
+	Select TOP 1 Count(1) From 
+		Acordos X (NOLOCK)
+	JOIN 
+		Contratos U (NOLOCK)
+	ON 
+		U.CTRA_ID = X.CTRA_ID
+	JOIN 
+		Funcionarios V (NOLOCK) 
+	ON 
+		V.FUNC_ID = U.FUNC_ID
+	JOIN 
+		Carteiras W (NOLOCK) 
+	ON 
+		W.CART_ID = U.CART_ID
+	JOIN
+		Status_do_Contrato K (NOLOCK)
+	ON
+		K.SCON_ID = U.SCON_ID
+	Where W.CART_ID = D.CART_ID
+	AND K.SCON_ID = 2
+	AND V.FUNC_ID = C.FUNC_ID
+	AND X.ACOR_Ativo = 1
+	AND Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Not Null)
+	AND Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Null)
+	) as Qtde_Acordos,
+	(
+	Select TOP 1 Sum(Y.PARC_ValorTotal) From 
+		Acordos X (NOLOCK) JOIN Parcelas Y On Y.ACOR_ID = X.ACOR_ID 
+	JOIN 
+		Contratos U (NOLOCK)
+	ON 
+		U.CTRA_ID = X.CTRA_ID
+	JOIN 
+		Funcionarios V (NOLOCK) 
+	ON 
+		V.FUNC_ID = U.FUNC_ID
+	JOIN 
+		Carteiras W (NOLOCK) 
+	ON 
+		W.CART_ID = U.CART_ID
+	JOIN
+		Status_do_Contrato K (NOLOCK)
+	ON
+		K.SCON_ID = U.SCON_ID
+	Where W.CART_ID = D.CART_ID
+	AND K.SCON_ID = 2
+	AND V.FUNC_ID = C.FUNC_ID	
+	AND Y.PARC_DataPagamento Is Null
+	AND X.ACOR_Ativo = 1
+	AND Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Not Null)
+	AND Exists(Select TOP 1 1 From Parcelas T (NOLOCK) Where T.ACOR_ID = X.ACOR_ID AND T.PARC_DataPagamento Is Null)
+	) as Valor_Acordos
+From 
+	Acordos A (NOLOCK)
+JOIN 
+	Contratos B (NOLOCK)
+ON 
+	B.CTRA_ID = A.CTRA_ID
+JOIN 
+	Funcionarios C (NOLOCK) 
+ON 
+	C.FUNC_ID = B.FUNC_ID
+JOIN 
+	Carteiras D (NOLOCK) 
+ON 
+	D.CART_ID = B.CART_ID
+JOIN
+	Parcelas E (NOLOCK)
+ON
+	E.ACOR_ID = A.ACOR_ID
+JOIN
+	Status_do_Contrato F (NOLOCK)
+ON
+	F.SCON_ID = B.SCON_ID
+JOIN
+                Contratante G (NOLOCK)
+ON
+                G.CONT_ID = D.CONT_ID
+Where
+	A.ACOR_Ativo = 1
+	AND F.SCON_ID = 2
+                AND G.CONT_ID In(@CONTRATANTE)
+	AND E.PARC_Vencimento Between  @DAT_ACORDO_INICIAL AND (Case When @DAT_ACORDO_FINAL = @DAT_ACORDO_INICIAL Then                 DateAdd(Day,1,@DAT_ACORDO_FINAL) else @DAT_ACORDO_FINAL end)
+
+Group By
+                G.CONT_Fantasia,
+	D.CART_ID,
+	C.FUNC_ID
+Order By
+	Contratante ASC</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@CONTRATANTE">
+            <Value>=Parameters!CONTRATANTE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DAT_ACORDO_INICIAL">
+            <Value>=Parameters!DAT_ACORDO_INICIAL.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DAT_ACORDO_FINAL">
+            <Value>=Parameters!DAT_ACORDO_FINAL.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>Neo</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Contratante">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Contratante</DataField>
+        </Field>
+        <Field Name="Qtde_Promessas">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Promessas</DataField>
+        </Field>
+        <Field Name="Valor_Promessas">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Valor_Promessas</DataField>
+        </Field>
+        <Field Name="Qtde_Acordos">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Acordos</DataField>
+        </Field>
+        <Field Name="Valor_Acordos">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Valor_Acordos</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>18.13226cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>

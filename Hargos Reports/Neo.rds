@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Neo</Name>
+  <DataSourceID>62d136ef-2a6b-4763-ac91-6c4cabdeb0cf</DataSourceID>
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=DBMIRROR;Initial Catalog=Hargos</ConnectString>
+  </ConnectionProperties>
+</RptDataSource>

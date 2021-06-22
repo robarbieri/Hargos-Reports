@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Neo_Real</Name>
+  <DataSourceID>d2815e00-32c3-4f65-9845-b115ef8898a3</DataSourceID>
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=NEO;Initial Catalog=Neo</ConnectString>
+  </ConnectionProperties>
+</RptDataSource>

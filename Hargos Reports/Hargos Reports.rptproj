@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmR3ZD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9EYXRhV2FyZWhvdXNlL0Rlc2lnbmVyLzEuMCI+DQogIDxFbmFibGVkPnRydWU8L0VuYWJsZWQ+DQogIDxQcm9qZWN0TmFtZT4iJC9ORU8vV0VCIiwgUVdNQUFBQUE8L1Byb2plY3ROYW1lPg0KICA8QXV4UGF0aD48L0F1eFBhdGg+DQogIDxMb2NhbFBhdGg+Li5cLi48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPk1TU0NDSTpNaWNyb3NvZnQgVmlzdWFsIFNvdXJjZVNhZmU8L1Byb3ZpZGVyPg0KPC9Tb3VyY2VDb250cm9sSW5mbz4=</State>
+  <DataSources>
+    <ProjectItem>
+      <Name>Neo.rds</Name>
+      <FullPath>Neo.rds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Neo_Real.rds</Name>
+      <FullPath>Neo_Real.rds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OSWeb.rds</Name>
+      <FullPath>OSWeb.rds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Sistemas.rds</Name>
+      <FullPath>Sistemas.rds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <Reports>
+    <ProjectItem>
+      <Name>Base Pesquisa Total.rdl</Name>
+      <FullPath>Base Pesquisa Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Boletim Financeiro Total.rdl</Name>
+      <FullPath>Boletim Financeiro Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Boletim Financeiro.rdl</Name>
+      <FullPath>Boletim Financeiro.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cadastro de Respostas.rdl</Name>
+      <FullPath>Cadastro de Respostas.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Controle de Acessos.rdl</Name>
+      <FullPath>Controle de Acessos.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Emissao de eMail.rdl</Name>
+      <FullPath>Emissao de eMail.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Emissao de SMS.rdl</Name>
+      <FullPath>Emissao de SMS.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Modulo X Reports.rdl</Name>
+      <FullPath>Modulo X Reports.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Cliente Solic Total.rdl</Name>
+      <FullPath>OS Cliente Solic Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Cliente Total.rdl</Name>
+      <FullPath>OS Cliente Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Dia Anterior Total.rdl</Name>
+      <FullPath>OS Dia Anterior Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Solicitacao Total.rdl</Name>
+      <FullPath>OS Solicitacao Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Solicitante Total.rdl</Name>
+      <FullPath>OS Solicitante Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>OS Web.rdl</Name>
+      <FullPath>OS Web.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Comparativa.rdl</Name>
+      <FullPath>Performance Comparativa.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Mala Carteira Total.rdl</Name>
+      <FullPath>Performance Mala Carteira Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Mala Carteira.rdl</Name>
+      <FullPath>Performance Mala Carteira.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Mala Contratante.rdl</Name>
+      <FullPath>Performance Mala Contratante.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Pesq Usuario.rdl</Name>
+      <FullPath>Performance Pesq Usuario.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Pesquisa.rdl</Name>
+      <FullPath>Performance Pesquisa.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Recuperador Ativo.rdl</Name>
+      <FullPath>Performance Recuperador Ativo.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Recuperador Receptivo Total.rdl</Name>
+      <FullPath>Performance Recuperador Receptivo Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance Recuperador Receptivo.rdl</Name>
+      <FullPath>Performance Recuperador Receptivo.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance X Total.rdl</Name>
+      <FullPath>Performance X Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Performance X.rdl</Name>
+      <FullPath>Performance X.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Portfolio de Acordos Total.rdl</Name>
+      <FullPath>Portfolio de Acordos Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Portfolio de Acordos.rdl</Name>
+      <FullPath>Portfolio de Acordos.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Portfolio de Promessas Total.rdl</Name>
+      <FullPath>Portfolio de Promessas Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Portfolio de Promessas.rdl</Name>
+      <FullPath>Portfolio de Promessas.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Prestacao de Contas.rdl</Name>
+      <FullPath>Prestacao de Contas.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Transacoes Cartao Total.rdl</Name>
+      <FullPath>Transacoes Cartao Total.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>2 Boletim Financeiro Total.rdl</Name>
+      <FullPath>2 Boletim Financeiro Total.rdl</FullPath>
+    </ProjectItem>
+  </Reports>
+  <Configurations>
+    <Configuration>
+      <Name>Debug</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetServerURL>http://dbmirror/ReportServer</TargetServerURL>
+        <TargetFolder>Hargos Reports</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>DebugLocal</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetServerURL>http://dbmirror/ReportServer</TargetServerURL>
+        <TargetFolder>Hargos Reports/Performance</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Production</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetFolder>Hargos Reports</TargetFolder>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>

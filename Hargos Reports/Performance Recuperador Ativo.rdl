@@ -1,0 +1,3390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Neo">
+      <DataSourceReference>Neo</DataSourceReference>
+      <rd:DataSourceID>71a6a11a-1a77-4ab3-a5df-e99dbe990259</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.3cm</BottomMargin>
+  <RightMargin>0.3cm</RightMargin>
+  <PageWidth>31.55cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="DAT_PAGTO_INICIAL">
+      <DataType>DateTime</DataType>
+      <Prompt>Dat Pagto Inicial</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DAT_PAGTO_FINAL">
+      <DataType>DateTime</DataType>
+      <Prompt>Dat Pagto Final</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="META_HONOR">
+      <DataType>Float</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1900</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Meta Honor(IBI = Receb) R$</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EQUIPE">
+      <DataType>Integer</DataType>
+      <Prompt>Equipe</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Equipe</DataSetName>
+          <ValueField>EQUI_ID</ValueField>
+          <LabelField>EQUI_Nome</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="PARC">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Tipo de Parcela</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>Primeira</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>2</Value>
+            <Label>Demais</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0</Value>
+            <Label>Todas</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="PARC_FIM">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Iif(Parameters!PARC.Value = 1, 1, iif(Parameters!PARC.Value = 0, 180, 180))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>PARC_FIM</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.1cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <List Name="List1">
+        <Sorting>
+          <SortBy>
+            <SortExpression>=Fields!Equipe.Value</SortExpression>
+            <Direction>Ascending</Direction>
+          </SortBy>
+        </Sorting>
+        <Left>0.25cm</Left>
+        <ReportItems>
+          <Chart Name="chart2">
+            <Legend>
+              <Visible>true</Visible>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <FontFamily>Tahoma</FontFamily>
+                <FontSize>7pt</FontSize>
+              </Style>
+              <Position>RightCenter</Position>
+            </Legend>
+            <Subtype>Plain</Subtype>
+            <Title>
+              <Caption>Meta Honorários (IBI = Recebimento)</Caption>
+              <Style>
+                <FontFamily>Tahoma</FontFamily>
+                <FontWeight>700</FontWeight>
+                <FontSize>8pt</FontSize>
+                <Color>SteelBlue</Color>
+              </Style>
+            </Title>
+            <Height>6cm</Height>
+            <CategoryAxis>
+              <Axis>
+                <Title />
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+                <MajorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+              </Axis>
+            </CategoryAxis>
+            <PointWidth>0</PointWidth>
+            <Left>15.5cm</Left>
+            <ThreeDProperties>
+              <Enabled>true</Enabled>
+              <Rotation>30</Rotation>
+              <Inclination>30</Inclination>
+              <Shading>Simple</Shading>
+              <WallThickness>50</WallThickness>
+              <DrawingStyle>Cylinder</DrawingStyle>
+            </ThreeDProperties>
+            <DataSetName>Neo</DataSetName>
+            <SeriesGroupings>
+              <SeriesGrouping>
+                <DynamicSeries>
+                  <Grouping Name="chart2_SeriesGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Recuperador.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!Recuperador.Value</Label>
+                </DynamicSeries>
+              </SeriesGrouping>
+            </SeriesGroupings>
+            <Top>1.5cm</Top>
+            <PlotArea>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <BackgroundColor>LightGrey</BackgroundColor>
+              </Style>
+            </PlotArea>
+            <ValueAxis>
+              <Axis>
+                <Title>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontWeight>700</FontWeight>
+                    <FontSize>9pt</FontSize>
+                    <Color>SteelBlue</Color>
+                  </Style>
+                </Title>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+                <MajorGridLines>
+                  <ShowGridLines>true</ShowGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <Max>100</Max>
+                <MajorInterval>25</MajorInterval>
+                <Margin>true</Margin>
+                <Visible>true</Visible>
+                <Scalar>true</Scalar>
+              </Axis>
+            </ValueAxis>
+            <ZIndex>7</ZIndex>
+            <Type>Column</Type>
+            <Width>14.75cm</Width>
+            <Palette>Default</Palette>
+            <ChartData>
+              <ChartSeries>
+                <DataPoints>
+                  <DataPoint>
+                    <DataValues>
+                      <DataValue>
+                        <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,Fields!Receb_Acumulado.Value/(Fields!Meta_Honor.Value/100),Fields!Val_Honor.Value/(Fields!Meta_Honor.Value/100))</Value>
+                      </DataValue>
+                    </DataValues>
+                    <DataLabel />
+                    <Marker>
+                      <Size>6pt</Size>
+                    </Marker>
+                  </DataPoint>
+                </DataPoints>
+              </ChartSeries>
+            </ChartData>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+          <Chart Name="chart1">
+            <Legend>
+              <Visible>true</Visible>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <FontFamily>Tahoma</FontFamily>
+                <FontSize>7pt</FontSize>
+              </Style>
+              <Position>RightCenter</Position>
+            </Legend>
+            <Subtype>Plain</Subtype>
+            <Title>
+              <Caption>Recebimento Acumulado</Caption>
+              <Style>
+                <FontFamily>Tahoma</FontFamily>
+                <FontWeight>700</FontWeight>
+                <FontSize>8pt</FontSize>
+                <Color>SteelBlue</Color>
+              </Style>
+            </Title>
+            <Height>6cm</Height>
+            <CategoryAxis>
+              <Axis>
+                <Title />
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+                <MajorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+              </Axis>
+            </CategoryAxis>
+            <PointWidth>0</PointWidth>
+            <Left>0.04cm</Left>
+            <ThreeDProperties>
+              <Enabled>true</Enabled>
+              <Rotation>30</Rotation>
+              <Inclination>30</Inclination>
+              <Shading>Simple</Shading>
+              <WallThickness>50</WallThickness>
+              <DrawingStyle>Cylinder</DrawingStyle>
+            </ThreeDProperties>
+            <DataSetName>Neo</DataSetName>
+            <SeriesGroupings>
+              <SeriesGrouping>
+                <DynamicSeries>
+                  <Grouping Name="chart1_SeriesGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Recuperador.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!Recuperador.Value</Label>
+                </DynamicSeries>
+              </SeriesGrouping>
+            </SeriesGroupings>
+            <Top>1.5cm</Top>
+            <PlotArea>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <BackgroundColor>LightGrey</BackgroundColor>
+              </Style>
+            </PlotArea>
+            <ValueAxis>
+              <Axis>
+                <Title>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontWeight>700</FontWeight>
+                    <FontSize>9pt</FontSize>
+                    <Color>SteelBlue</Color>
+                  </Style>
+                </Title>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+                <MajorGridLines>
+                  <ShowGridLines>true</ShowGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <MajorInterval>5000</MajorInterval>
+                <Margin>true</Margin>
+                <Visible>true</Visible>
+                <Scalar>true</Scalar>
+              </Axis>
+            </ValueAxis>
+            <ZIndex>6</ZIndex>
+            <Type>Column</Type>
+            <Width>13.46cm</Width>
+            <Palette>Default</Palette>
+            <ChartData>
+              <ChartSeries>
+                <DataPoints>
+                  <DataPoint>
+                    <DataValues>
+                      <DataValue>
+                        <Value>=Sum(Fields!Receb_Acumulado.Value)</Value>
+                      </DataValue>
+                    </DataValues>
+                    <DataLabel />
+                    <Marker />
+                  </DataPoint>
+                </DataPoints>
+              </ChartSeries>
+            </ChartData>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+          <Image Name="image1">
+            <Sizing>AutoSize</Sizing>
+            <Left>28.9cm</Left>
+            <ZIndex>5</ZIndex>
+            <Width>1.32275cm</Width>
+            <Source>Embedded</Source>
+            <Style />
+            <Height>1.32275cm</Height>
+            <Value>h_msn_small</Value>
+          </Image>
+          <Textbox Name="textbox18">
+            <Left>19.8cm</Left>
+            <Top>0.2cm</Top>
+            <ZIndex>4</ZIndex>
+            <Width>8.8cm</Width>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>700</FontWeight>
+              <FontSize>14pt</FontSize>
+              <Color>SlateGray</Color>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.8cm</Height>
+            <Value>Performance Recuperador Ativo</Value>
+          </Textbox>
+          <Textbox Name="textbox19">
+            <Left>0.04cm</Left>
+            <Top>0.75cm</Top>
+            <ZIndex>3</ZIndex>
+            <Width>2.96cm</Width>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>700</FontWeight>
+              <FontSize>14pt</FontSize>
+              <Color>SteelBlue</Color>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.75cm</Height>
+            <Value>Reports</Value>
+          </Textbox>
+          <Textbox Name="textbox20">
+            <ZIndex>2</ZIndex>
+            <Width>3.2cm</Width>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>700</FontWeight>
+              <FontSize>16pt</FontSize>
+              <Color>SteelBlue</Color>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.91429cm</Height>
+            <Value>Modulo X</Value>
+          </Textbox>
+          <Table Name="table1">
+            <Footer>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>15</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <ZIndex>15</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>White</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.1cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox12">
+                          <rd:DefaultName>textbox12</rd:DefaultName>
+                          <ZIndex>30</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox23">
+                          <rd:DefaultName>textbox23</rd:DefaultName>
+                          <ZIndex>29</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Ligações</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox26">
+                          <ZIndex>28</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord.</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox49">
+                          <ZIndex>27</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Canc.Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox13">
+                          <ZIndex>26</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtde Pagtos</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox14">
+                          <ZIndex>25</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Acum","Val Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox15">
+                          <ZIndex>24</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Meta Receb","Meta Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox16">
+                          <ZIndex>23</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Receb","% Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox17">
+                          <ZIndex>22</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Dia","Honor Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox21">
+                          <ZIndex>21</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Pagto/Acord","Receb Acumul.")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox24">
+                          <ZIndex>20</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","Receb Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox25">
+                          <ZIndex>19</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox27">
+                          <ZIndex>18</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Ligações/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox28">
+                          <ZIndex>17</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox29">
+                          <ZIndex>16</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Val. Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.5cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox10">
+                          <rd:DefaultName>textbox10</rd:DefaultName>
+                          <ZIndex>45</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Médias</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox32">
+                          <rd:DefaultName>textbox32</rd:DefaultName>
+                          <ZIndex>44</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Qtde_Ligacoes.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox52">
+                          <ZIndex>43</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Qtde_Acordos.Value + fields!Qtde_Pagamentos.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox61">
+                          <ZIndex>42</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Acordos_Cancelados.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox62">
+                          <rd:DefaultName>textbox62</rd:DefaultName>
+                          <ZIndex>41</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Qtde_Pagamentos.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox46">
+                          <ZIndex>40</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value)/Sum(Fields!QTDE.Value),2),"R$ " &amp; FormatNumber(Sum(Fields!Val_Honor.Value)/Sum(Fields!QTDE.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox47">
+                          <ZIndex>39</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(Sum(Fields!Meta_Honor.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox65">
+                          <rd:DefaultName>textbox65</rd:DefaultName>
+                          <ZIndex>38</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,Round(Sum(Fields!Receb_Acumulado.Value/(Fields!Meta_Honor.Value/100))/Sum(Fields!QTDE.Value)) &amp; " %",Round(Sum(Fields!Val_Honor.Value/(Fields!Meta_Honor.Value/100))/Sum(Fields!QTDE.Value)) &amp; " %")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox66">
+                          <rd:DefaultName>textbox66</rd:DefaultName>
+                          <ZIndex>37</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber((Sum(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value))/Sum(Fields!QTDE.Value),2),"R$ " &amp; FormatNumber((Sum(Fields!Val_Honor.Value/Fields!Qtde_Dias.Value))/Sum(Fields!QTDE.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox68">
+                          <rd:DefaultName>textbox68</rd:DefaultName>
+                          <ZIndex>36</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,Round(Sum(Fields!Qtde_Pagamentos.Value/((Fields!Qtde_Acordos.Value + Fields!Qtde_Pagamentos.Value)/100))/Sum(Fields!QTDE.Value)) &amp; " %","R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value)/Sum(Fields!QTDE.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox50">
+                          <ZIndex>35</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","R$ " &amp; FormatNumber((Sum(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value))/Sum(Fields!QTDE.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox51">
+                          <ZIndex>34</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Qtde_Dias.Value)/Sum(Fields!QTDE.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox53">
+                          <ZIndex>33</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Qtde_Ligacoes.Value/Fields!Qtde_Dias.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox54">
+                          <ZIndex>32</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(((Sum(Fields!Qtde_Acordos.Value) + Sum(Fields!Qtde_Pagamentos.Value))/Fields!Qtde_Dias.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox55">
+                          <ZIndex>31</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(Sum(((Fields!Valor_Acordos.Value + Fields!Receb_Acumulado.Value)/Fields!Qtde_Dias.Value))/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.5cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>15</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox31">
+                          <rd:DefaultName>textbox31</rd:DefaultName>
+                          <ZIndex>46</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.1cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox30">
+                          <rd:DefaultName>textbox30</rd:DefaultName>
+                          <ZIndex>61</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox38">
+                          <rd:DefaultName>textbox38</rd:DefaultName>
+                          <ZIndex>60</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Ligações</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox155">
+                          <ZIndex>59</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord.</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox59">
+                          <ZIndex>58</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Canc.Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox77">
+                          <ZIndex>57</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtde Pagtos</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox111">
+                          <ZIndex>56</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Acum","Val Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox147">
+                          <ZIndex>55</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Meta Receb","Meta Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox148">
+                          <ZIndex>54</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Receb","% Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox149">
+                          <ZIndex>53</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Dia","Honor Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox150">
+                          <ZIndex>52</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Pagto/Acord","Receb Acumul.")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox153">
+                          <ZIndex>51</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","Receb Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox154">
+                          <ZIndex>50</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox156">
+                          <ZIndex>49</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Ligações/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox157">
+                          <ZIndex>48</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox158">
+                          <ZIndex>47</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Val. Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.5cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox76">
+                          <ZIndex>76</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>DodgerBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Totais</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox43">
+                          <rd:DefaultName>textbox43</rd:DefaultName>
+                          <ZIndex>75</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Qtde_Ligacoes.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox40">
+                          <ZIndex>74</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Qtde_Acordos.Value + fields!Qtde_Pagamentos.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox60">
+                          <ZIndex>73</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Acordos_Cancelados.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox56">
+                          <ZIndex>72</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Qtde_Pagamentos.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox11">
+                          <ZIndex>71</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value),2),"R$ " &amp; FormatNumber(Sum(Fields!Val_Honor.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox36">
+                          <ZIndex>70</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(Sum(Fields!Meta_Honor.Value)/Sum(Fields!QTDE.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox45">
+                          <ZIndex>69</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="100 %"</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox34">
+                          <ZIndex>68</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value),2),"R$ " &amp; FormatNumber(Sum(Fields!Val_Honor.Value/Fields!Qtde_Dias.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox35">
+                          <ZIndex>67</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"100 %","R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox39">
+                          <ZIndex>66</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","R$ " &amp; FormatNumber(Sum(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value),2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox41">
+                          <ZIndex>65</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Max(Fields!Qtde_Dias.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox42">
+                          <ZIndex>64</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Sum(Fields!Qtde_Ligacoes.Value/Fields!Qtde_Dias.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox33">
+                          <ZIndex>63</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber((Sum(Fields!Qtde_Acordos.Value) + Sum(Fields!Qtde_Pagamentos.Value))/Fields!Qtde_Dias.Value,2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox44">
+                          <ZIndex>62</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(Sum((Fields!Valor_Acordos.Value + Fields!Receb_Acumulado.Value)/Fields!Qtde_Dias.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.5cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>15</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox37">
+                          <rd:DefaultName>textbox37</rd:DefaultName>
+                          <ZIndex>77</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.1cm</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox143">
+                          <ZIndex>79</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>#ff8000</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="Qtde: " &amp; Sum(Fields!QTDE.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ColSpan>14</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox123">
+                          <rd:DefaultName>textbox123</rd:DefaultName>
+                          <ZIndex>78</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.5cm</Height>
+                </TableRow>
+              </TableRows>
+            </Footer>
+            <Left>0.04cm</Left>
+            <DataSetName>Neo</DataSetName>
+            <Top>7.8cm</Top>
+            <ZIndex>1</ZIndex>
+            <Details>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Recuperador">
+                          <rd:DefaultName>Recuperador</rd:DefaultName>
+                          <ZIndex>14</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Recuperador.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox22">
+                          <rd:DefaultName>textbox22</rd:DefaultName>
+                          <ZIndex>13</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Qtde_Ligacoes.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox104">
+                          <ZIndex>12</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Qtde_Acordos.Value + Fields!Qtde_Pagamentos.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox48">
+                          <ZIndex>11</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Acordos_Cancelados.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Qtde_Pagamentos">
+                          <rd:DefaultName>Qtde_Pagamentos</rd:DefaultName>
+                          <ZIndex>10</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Qtde_Pagamentos.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Val_Honor">
+                          <rd:DefaultName>Val_Honor</rd:DefaultName>
+                          <ZIndex>9</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber(Fields!Receb_Acumulado.Value,2),"R$ " &amp; FormatNumber(Fields!Val_Honor.Value,2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Meta_Honor">
+                          <rd:DefaultName>Meta_Honor</rd:DefaultName>
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(Fields!Meta_Honor.Value,2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Percentual_Honor">
+                          <rd:DefaultName>Percentual_Honor</rd:DefaultName>
+                          <ZIndex>7</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,Round(Fields!Receb_Acumulado.Value/(Fields!Meta_Honor.Value/100)) &amp; " %",Round(Fields!Val_Honor.Value/(Fields!Meta_Honor.Value/100)) &amp; " %")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Honor_Dia">
+                          <rd:DefaultName>Honor_Dia</rd:DefaultName>
+                          <ZIndex>6</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"R$ " &amp; FormatNumber(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value,2),"R$ " &amp; FormatNumber(Fields!Val_Honor.Value/Fields!Qtde_Dias.Value,2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Receb_Acumulado">
+                          <rd:DefaultName>Receb_Acumulado</rd:DefaultName>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,Round(Fields!Qtde_Pagamentos.Value/((Fields!Qtde_Acordos.Value + Fields!Qtde_Pagamentos.Value)/100)) &amp; " %","R$ " &amp; FormatNumber(Fields!Receb_Acumulado.Value,2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox102">
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","R$ " &amp; FormatNumber(Fields!Receb_Acumulado.Value/Fields!Qtde_Dias.Value,2))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox103">
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Qtde_Dias.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox105">
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber(Fields!Qtde_Ligacoes.Value/Fields!Qtde_Dias.Value,2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox106">
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=FormatNumber((Fields!Qtde_Acordos.Value + Fields!Qtde_Pagamentos.Value)/Fields!Qtde_Dias.Value,2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox107">
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <Color>#404040</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="R$ " &amp; FormatNumber(((Fields!Valor_Acordos.Value + Fields!Receb_Acumulado.Value)/Fields!Qtde_Dias.Value),2)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.53333cm</Height>
+                </TableRow>
+              </TableRows>
+            </Details>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <ZIndex>94</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Recuperador</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <ZIndex>93</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Ligações</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox96">
+                          <ZIndex>92</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord.</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox63">
+                          <ZIndex>91</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Canc.Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <rd:DefaultName>textbox4</rd:DefaultName>
+                          <ZIndex>90</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtde Pagtos</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <ZIndex>89</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Acum","Val Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <rd:DefaultName>textbox6</rd:DefaultName>
+                          <ZIndex>88</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Meta Receb","Meta Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <rd:DefaultName>textbox7</rd:DefaultName>
+                          <ZIndex>87</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Receb","% Honor")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox8">
+                          <rd:DefaultName>textbox8</rd:DefaultName>
+                          <ZIndex>86</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"Receb Dia","Honor Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox9">
+                          <rd:DefaultName>textbox9</rd:DefaultName>
+                          <ZIndex>85</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"% Pagto/Acord","Receb Acumul.")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox94">
+                          <ZIndex>84</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=iif(Instr(Fields!Equipe.Value.ToString,"IBI ") &gt; 0,"-","Receb Dia")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox95">
+                          <ZIndex>83</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Período</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox97">
+                          <ZIndex>82</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Ligações/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox98">
+                          <ZIndex>81</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Qtd Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox99">
+                          <ZIndex>80</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BackgroundColor>SteelBlue</BackgroundColor>
+                            <Color>White</Color>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Val. Acord/Dia</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.55873cm</Height>
+                </TableRow>
+              </TableRows>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>3.25cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.1cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.75cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.9cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.5cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.75cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.5cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.75cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.5cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.1cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.2cm</Width>
+              </TableColumn>
+            </TableColumns>
+          </Table>
+          <Textbox Name="textbox57">
+            <Left>4.1cm</Left>
+            <Top>0.25cm</Top>
+            <Width>13cm</Width>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>14pt</FontSize>
+              <Color>SlateGray</Color>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.68571cm</Height>
+            <Value>=Fields!Equipe.Value &amp; " - " &amp; Right("00" &amp; Day(Min(Fields!Data_Min.Value)),2) &amp; "/" &amp; Right("00" &amp; Month(Min(Fields!Data_Min.Value)),2) &amp; "/" &amp; Year(Min(Fields!Data_Min.Value)) &amp; " até " &amp; Right("00" &amp; Day(Min(Fields!Data_Max.Value)),2) &amp; "/" &amp; Right("00" &amp; Month(Min(Fields!Data_Max.Value)),2) &amp; "/" &amp; Year(Min(Fields!Data_Max.Value))</Value>
+          </Textbox>
+        </ReportItems>
+        <DataSetName>Neo</DataSetName>
+        <Top>0.25cm</Top>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>14pt</FontSize>
+          <Color>SlateGray</Color>
+        </Style>
+        <Grouping Name="list1_Contratante">
+          <PageBreakAtEnd>true</PageBreakAtEnd>
+          <GroupExpressions>
+            <GroupExpression>=Fields!Equipe.Value</GroupExpression>
+          </GroupExpressions>
+        </Grouping>
+      </List>
+    </ReportItems>
+    <Height>11.94206cm</Height>
+  </Body>
+  <rd:ReportID>9eda8f15-b8e6-4474-9f7a-ca20303de52d</rd:ReportID>
+  <LeftMargin>0.3cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="h_msn_small">
+      <ImageData>/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAZAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQICAgICAgICAgICAwMDAwMDAwMDAwEBAQEBAQECAQECAgIBAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMD/8AAEQgAMgAyAwERAAIRAQMRAf/EAIwAAQACAgMAAAAAAAAAAAAAAAAHCAkKBAUGAQEAAgMBAQAAAAAAAAAAAAAABggFBwkEAxAAAQQCAgEEAgIDAAAAAAAABAECAwUGBwAIESESEwkyFDEiQSMVEQACAQQBAwMCAwUJAAAAAAABAgMABAUGESESBzETCEFRcSJCYTJyIxSBUmKCM1NjFRb/2gAMAwEAAhEDEQA/AN/jilOKU4pUf7T2biOm9fZVs3Oz312K4fVyWlqRDCpJUjUfHAKCAK1WuKsbI2eMceJFT5JpGt8oi+UjG57dhdD1m72zYZPbxNnF3uR1ZiSFVEH6ndiFUfUkfTk1IdU1fMbpsVpq+AjEuWvJRHGCeFHQlmZv0oigu7fRVJ4PpXjevnYDCOyGvK3YeENsQxS2xtsKO5jHiuqIqVqyxB2bAyCw/mmFVszFilka6ORq+fPoni8e7tYeRdOstzxcU0FjfIzKkvHeoV2Tr2kqeq8ggkcGvXvWoX2hbbfafk5YZr+wlCO8RYxsSiuO3uVW9GHIKgg81OXJpUTpxSnFKcUqq/YPttrnrplGssTy2Iw6z2LYHumaBJEiYvitXCjDsrtI3I+acd9uSKCMNG35SiJ1Ri/63Iuttq8k4/W9xwejRwSXWezUr8Kh4EFvEpaS4kPBHaOOFXoWIbg9ODPdd0G/z2pZrdZJo7bBYaKPuZwSZ7iZ1SK2iA/WwLOSeiqByPzA1RX7
+itwUlXpDEdPg2kK5TsHK6jJDaiKZv7ouG41GSd/0LAVrlkgHNv3CRQfIiJK+KT2+Vid4q78592sLLR7LRIJkOXvrxJpIwfzLBCGIdgPQNKV7eeO4qSP3asl8L9Pvb7d7vdZoW/6iws3iSQj8rXE/avYpPQssPuM/H7oZeeO4c4aMQ7bb41rRUtdqzMYdN4hW2oRjv+QPDKNk+Ri1QFIi3MluLbWWZlTCgRtZThwyMRV/oN719/Kz6B5B+Rm9LitS8VCe0wmJijhQW6BLZQoAL3dxIGEhY9zMh5B7j2xk9asLu+h/HrQmym0+UmS9zeXmlmf+okZ7py7FhHZW8LI0YUcIsgA4AHfKF5FbXHW7YOZ7T0rgWe59ih+F5RkVQ0w6jtA3VlgkbZZIRLIuqe+WSpluRo2l/quc5w6TJGq+WrzrniUyMeLto8u6SZZYEEzoO1GlCj3GVfopbkgfQVy1v3s5L6eTHI8ePaZzErkM6xliUV2HQsq8BiOhPJqceZCvLTilcU44KsDKsbEsUCvBHmLNONIiFDDEHYspBRRU744Bx4Imq573uRrWoqqvhOfC6urayt3u7yRIrSNSzu7BUVR1LMzEAAfUk8CvrBBPdTJbWyPJcSMFVFBZmYngKqjkkk9AAOSa1QOyvaePaHZ7Yu0MYqIcufjVxRUGoi7GRhOH0+I68NMLhyawrnqyKzGtsu9lxEwiSEH+sazrIxPjdybzfn3Ycr5mzeyePLFsltFygx2LcRmYQWaMQ80cSc98kzgOrNxGisxfkHium2L8E4HH+H8JgPIV+uL1e2lbJZVC6wtPeSKPaglmbgRx28RMbKoMruAE7T+aqxm120dt7fs4syMMzzaV/b1oJS3NuyzS7yi+Mr6vHKguxq55B4KeIy0idNCG5kY4ME0cSRq3+sF8a+Otj8veczrnkOa4mvopHnybNIHk7Ye3uhMiEqpZ2SLhCBGO5V4K8Cc+RfImveK/CCbF46it4rK4SOD
+FqsRSPun7iJ/bcKzhY1ebukBMp7GcsG5OzP1b+vTTPX0WoynIq0baO6WAwJabGysMYtKopzEfPW4FROjWowvHhJVVg8AcUbvY1Fe5XKq87HYPA4bWcZFhtftobPFwKFSOJQiqAOPQep+5PUnqetcm8rlspncjLl81cTXeUnYtJLKxd3J+pZiT+AHAA6AAVf7+PRPRE/hOZesfTilOKVim+3Kvsy+vtBLFmlxSVMuYDUkuG1M0Ysew8kvo2DYxW3M6yJLNSUboSjpx0Y9kvxtVfarGOSnvzNs5rnx1bFb+eGNrxYUs4uAb64m4WFXbkfy4eHkZOG7+gHDdrC1fxGvY7XyNKpsLeZhZvNJeS8n+gtoAXnkjXj/Vl5SJX7l7ASeoJU0A679R9d4t10zfuH2ArW5LhmHVNrfaf1gdI+PGspsqaeSux/Oc7r2LGmSHZVlaQsqgSFkEABdF4YsjpHvzWuaZrHxl8J3uwLFE+zQ44y3FwwHuTXTqBHErHqI1lZURAeAB3HqSajuwbZsnyR8vWeGlkkTA3N+sNrbhj7dvahiXlK+hlMKtLLIR3E/lBChQOl+rbWR2zexY2e5AxTWYi282jdlPYiMmyA2c7HMW9zUajGrJb2NyW1qePCDxqnoic1n8HNVuHw2a8l5Xl8jlLwwo7erLGTJM3P8Ajmc8/cpWy/mbs1t/3+H8dYrhMZiLISsg9FeVRHCnH/Hbxrxz9JDWzly+lUrpxSnFKcUrAj9nuYWO0+x2oOutAXI1mMU49uV8CK/4s62jajYdjkz2J5RxVDUz/twqvj2qQqp68pv5EuF8g/JzWfH5HuYXAW75K5X1Qzccxd32KEQ8fxkfWrVaNA2jfG/Zd6U+3l8/cxYq3b0b2OQbjt/jBkDcf7f7K9Z9r14FqrrrojrRhjUHEvbSug/SgcrHSY3rWsBErhZWN/Jh+RWgcnr+Tx15F/nXtk1pqeJ0ezJNxkrwzOoHVo7cAIv+aWRT+Kj+yV
+fCrWILrbcpuV4ALbF2QjRj6LJclu5ufukEUgP2D1YL6q9VRYXom3zqWD2mbEyJ8NbO5qI+TE8JjdjNPLG718w2liMcd6L4cpXu9fPlbVeI9Pj0Pxvh9WQAS21lH7nH1mcd8pP4yM1Vj8lbXJvG/ZbapCSl5eyNH+yFT2Qr+AiVBWUDmxqg9OKU4pTilUQyLpRV5J3Ho+z5d8PHUVQFdYGYi0WeQu4zWhrZ6bG7Qk2WVww9TShmTTNHjYiylubI9V9jESD4rx5rWH3TI79aRv8A+jycUcUrsxKqkQ6CNf0d3Qv/AHiq/apbkt32HK6jj9Hu5V/87jJ5poYwoB9yfjuaRvVyo5WPnjsDMOvJNQF9oPWnP9vLp3Y+ssdtsxyPBbK1x4vF6cR5ZRQ2STVs9NaqqK2EMClugGyGzSKjWiuc5PLmta7U/mPwdN5O3zVtqjmjSzw91zdI/P8AMhDpMoQcEFvcTtYHgdrk8/l4OzPFXmRPHOlbRrDQyvd5mzCW0icARTFZIXaTkg9vtSllK8nvQDjhiRko1HgomstX6/18FGyKDD8RoaFWx/i6evr4IS5fKfks5aPeq/5V3nlkPw9K0MBwOPoKkTilOKU4pTilOKU4pTilOKU4pTilf//Z</ImageData>
+      <MIMEType>image/jpeg</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="Neo">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT 
+	FUNC_Nome as Recuperador, 
+                y.EQUI_NOME as Equipe,
+	Count(1) as Qtde_Pagamentos,
+	Sum(PARC_ValorHonorarios) as Val_Honor,
+	@META_HONOR as Meta_Honor,
+	Sum(PARC_ValorPagamento) as Receb_Acumulado,
+               ((Select Min(A.HICO_InicioCobranca)
+From 
+	Historico_do_Cobrador A WITH(NOLOCK)
+Join
+	Funcionarios B WITH(NOLOCK)
+On
+	B.FUNC_ID = A.FUNC_ID
+Join
+	Equipe C WITH(NOLOCK)
+On
+	C.EQUI_ID = B.EQUI_ID
+Join
+	Andamento_da_Cobranca D WITH(NOLOCK)
+On
+	D.CTRA_ID = A.CTRA_ID
+Where
+	C.EQUI_ID IN(@EQUIPE)
+                AND B.FUNC_ID = f.FUNC_ID
+	AND D.ANCO_DataHora Between A.HICO_InicioCobranca AND DateAdd(S, 600, HICO_InicioCobranca +                                                                                                     IsNull(HICO_TempoCobranca,0) + IsNull(HICO_TempoPausa,0))
+	AND (D.STAC_ID = 37 OR D.STAC_ID &gt;= 900)
+	AND A.HICO_InicioCobranca Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59')) as Data_Min,
+               ((Select Max(A.HICO_InicioCobranca)
+From 
+	Historico_do_Cobrador A WITH(NOLOCK)
+Join
+	Funcionarios B WITH(NOLOCK)
+On
+	B.FUNC_ID = A.FUNC_ID
+Join
+	Equipe C WITH(NOLOCK)
+On
+	C.EQUI_ID = B.EQUI_ID
+Join
+	Andamento_da_Cobranca D WITH(NOLOCK)
+On
+	D.CTRA_ID = A.CTRA_ID
+Where
+	C.EQUI_ID IN(@EQUIPE)
+                AND B.FUNC_ID = f.FUNC_ID
+	AND D.ANCO_DataHora Between A.HICO_InicioCobranca AND DateAdd(S, 600, HICO_InicioCobranca +                                                                                                     IsNull(HICO_TempoCobranca,0) + IsNull(HICO_TempoPausa,0))
+	AND (D.STAC_ID = 37 OR D.STAC_ID &gt;= 900)
+	AND A.HICO_InicioCobranca Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59')) as Data_Max,
+
+               [dbo].[func_ReturnDWUtil](((Select Min(A.HICO_InicioCobranca)
+From 
+	Historico_do_Cobrador A WITH(NOLOCK)
+Join
+	Funcionarios B WITH(NOLOCK)
+On
+	B.FUNC_ID = A.FUNC_ID
+Join
+	Equipe C WITH(NOLOCK)
+On
+	C.EQUI_ID = B.EQUI_ID
+Join
+	Andamento_da_Cobranca D WITH(NOLOCK)
+On
+	D.CTRA_ID = A.CTRA_ID
+Where
+	C.EQUI_ID IN(@EQUIPE)
+                AND B.FUNC_ID = f.FUNC_ID
+	AND D.ANCO_DataHora Between A.HICO_InicioCobranca AND DateAdd(S, 600, HICO_InicioCobranca +                                                                                                     IsNull(HICO_TempoCobranca,0) + IsNull(HICO_TempoPausa,0))
+	AND (D.STAC_ID = 37 OR D.STAC_ID &gt;= 900)
+	AND A.HICO_InicioCobranca Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59')),
+((Select Max(A.HICO_InicioCobranca)
+From 
+	Historico_do_Cobrador A WITH(NOLOCK)
+Join
+	Funcionarios B WITH(NOLOCK)
+On
+	B.FUNC_ID = A.FUNC_ID
+Join
+	Equipe C WITH(NOLOCK)
+On
+	C.EQUI_ID = B.EQUI_ID
+Join
+	Andamento_da_Cobranca D WITH(NOLOCK)
+On
+	D.CTRA_ID = A.CTRA_ID
+Where
+	C.EQUI_ID IN(@EQUIPE)
+                AND B.FUNC_ID = f.FUNC_ID
+	AND D.ANCO_DataHora Between A.HICO_InicioCobranca AND DateAdd(S, 600, HICO_InicioCobranca +                                                                                                     IsNull(HICO_TempoCobranca,0) + IsNull(HICO_TempoPausa,0))
+	AND (D.STAC_ID = 37 OR D.STAC_ID &gt;= 900)
+	AND A.HICO_InicioCobranca Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59'))) as Qtde_Dias,
+	(Select TOP 1
+		Count(1)
+	From 
+		Acordos X WITH (NOLOCK)
+	JOIN 
+		Contratos Y WITH (NOLOCK)
+	ON
+		X.CTRA_ID = Y.CTRA_ID
+	JOIN
+		Funcionarios Z WITH (NOLOCK)
+	ON
+		Y.FUNC_ID = Z.FUNC_ID
+	JOIN
+		Carteiras W WITH (NOLOCK)
+	ON
+		Y.CART_ID = W.CART_ID
+	JOIN	
+		Parcelas p WITH (NOLOCK)
+	ON 
+		p.ACOR_ID = X.ACOR_ID
+	Where
+		PARC_PrestaContas = 1
+		AND PARC_Numero = 1
+                                AND X.ACOR_Ativo = 1
+		AND Z.FUNC_ID = f.FUNC_ID
+		AND PARC_DataPagamento Is Not Null
+		AND X.ACOR_Data Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59') as Qtde_Acordos,
+(Select TOP 1
+	Count(1) Qtde_Acordos
+From 
+	Acordos X (NOLOCK)
+JOIN 
+	Contratos Y (NOLOCK)
+ON
+	X.CTRA_ID = Y.CTRA_ID
+JOIN
+	Funcionarios Z (NOLOCK)
+ON
+	Y.FUNC_ID = Z.FUNC_ID
+JOIN
+	Carteiras W (NOLOCK)
+ON
+	Y.CART_ID = W.CART_ID
+Where
+	Y.SCON_Id Not In(4,7)
+                AND X.ACOR_Ativo = 0
+                AND Z.FUNC_ID = f.FUNC_ID
+	AND X.ACOR_DataCancelamento Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59') as Acordos_Cancelados,
+	((Select TOP 1
+	Count(A.CTRA_ID) 
+From 
+	Historico_do_Cobrador A WITH(NOLOCK)
+Join
+	Funcionarios B WITH(NOLOCK)
+On
+	B.FUNC_ID = A.FUNC_ID
+Join
+	Equipe C WITH(NOLOCK)
+On
+	C.EQUI_ID = B.EQUI_ID
+Join
+	Andamento_da_Cobranca D WITH(NOLOCK)
+On
+	D.CTRA_ID = A.CTRA_ID
+Where
+	C.EQUI_ID IN(@EQUIPE)
+                AND B.FUNC_ID = f.FUNC_ID
+	AND D.ANCO_DataHora Between A.HICO_InicioCobranca AND DateAdd(S, 600, HICO_InicioCobranca +                                                                                                 IsNull(HICO_TempoCobranca,0) + IsNull(HICO_TempoPausa,0))
+	AND (D.STAC_ID = 37 OR D.STAC_ID &gt;= 900)
+	AND A.HICO_InicioCobranca Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59')) as Qtde_Ligacoes,
+	(Select TOP 1
+		Sum(X.ACOR_ValorAcordo)
+	From 
+		Acordos X WITH (NOLOCK)
+	JOIN 
+		Contratos Y WITH (NOLOCK)
+	ON 
+		X.CTRA_ID = Y.CTRA_ID
+	JOIN 
+		Funcionarios Z WITH (NOLOCK) 
+	ON 
+		Y.FUNC_ID = Z.FUNC_ID
+	JOIN 
+		Carteiras W WITH (NOLOCK) 
+	ON 
+		Y.CART_ID = W.CART_ID
+	JOIN	
+		Parcelas p WITH (NOLOCK)
+	ON 
+		p.ACOR_ID = X.ACOR_ID
+	Where
+		Z.FUNC_ID = f.FUNC_ID
+                                AND X.ACOR_Ativo = 1
+		AND PARC_DataPagamento Is Not Null
+		AND X.ACOR_Data Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59') as Valor_Acordos
+From
+	Parcelas p WITH (NOLOCK)
+JOIN 
+	Acordos a WITH (NOLOCK) 
+ON 
+	p.ACOR_ID = a.ACOR_ID
+JOIN 
+	Contratos c WITH (NOLOCK) 
+ON 
+	a.CTRA_ID = c.CTRA_ID
+JOIN 
+	Carteiras ca WITH (NOLOCK) 
+ON 
+	c.CART_ID = ca.CART_ID
+JOIN 
+	Funcionarios f WITH (NOLOCK) 
+ON 
+	c.FUNC_ID = f.FUNC_ID
+JOIN 
+	Equipe Y WITH (NOLOCK) 
+ON 
+	y.EQUI_ID = f.EQUI_ID
+WHERE 
+                y.EQUI_ID IN(@EQUIPE)
+	AND f.STAF_ID = 1
+                AND FPAG_ID &lt;&gt; 5
+                AND NOT PARC_ValorPagamento Is Null
+	AND PARC_DataPagamento Between @DAT_PAGTO_INICIAL + '00:00:00' AND @DAT_PAGTO_FINAL + '23:59:59'
+                AND PARC_Numero &gt;= @PARC 
+                AND PARC_Numero &lt;= @PARC_FIM
+                AND Substring(LTRIM(RTRIM(f.FUNC_NOME)),1,3) NOT IN ('ASN','CSC')
+GROUP BY
+	FUNC_Nome,
+                y.EQUI_NOME,
+	f.FUNC_ID
+ORDER BY
+	y.EQUI_NOME ASC, 
+	FUNC_Nome ASC,
+	Receb_Acumulado DESC,
+	Count(1) DESC</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@META_HONOR">
+            <Value>=Parameters!META_HONOR.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EQUIPE">
+            <Value>=Parameters!EQUIPE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DAT_PAGTO_INICIAL">
+            <Value>=Parameters!DAT_PAGTO_INICIAL.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DAT_PAGTO_FINAL">
+            <Value>=Parameters!DAT_PAGTO_FINAL.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PARC">
+            <Value>=Parameters!PARC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PARC_FIM">
+            <Value>=Parameters!PARC_FIM.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>Neo</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Recuperador">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Recuperador</DataField>
+        </Field>
+        <Field Name="Equipe">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Equipe</DataField>
+        </Field>
+        <Field Name="Qtde_Pagamentos">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Pagamentos</DataField>
+        </Field>
+        <Field Name="Val_Honor">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Val_Honor</DataField>
+        </Field>
+        <Field Name="Meta_Honor">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Meta_Honor</DataField>
+        </Field>
+        <Field Name="Receb_Acumulado">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Receb_Acumulado</DataField>
+        </Field>
+        <Field Name="Data_Min">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>Data_Min</DataField>
+        </Field>
+        <Field Name="Data_Max">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>Data_Max</DataField>
+        </Field>
+        <Field Name="Qtde_Dias">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Dias</DataField>
+        </Field>
+        <Field Name="Qtde_Acordos">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Acordos</DataField>
+        </Field>
+        <Field Name="Acordos_Cancelados">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Acordos_Cancelados</DataField>
+        </Field>
+        <Field Name="Qtde_Ligacoes">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Qtde_Ligacoes</DataField>
+        </Field>
+        <Field Name="Valor_Acordos">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Valor_Acordos</DataField>
+        </Field>
+        <Field Name="QTDE">
+          <Value>=1</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Equipe">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>Select EQUI_ID, EQUI_Nome From Equipe Order By EQUI_Nome</CommandText>
+        <DataSourceName>Neo</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="EQUI_ID">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>EQUI_ID</DataField>
+        </Field>
+        <Field Name="EQUI_Nome">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>EQUI_Nome</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>Rodrigo Barbieri</Author>
+  <Code />
+  <Width>30.59cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>pt-BR</Language>
+  <TopMargin>0.3cm</TopMargin>
+  <PageHeight>17cm</PageHeight>
+</Report>
